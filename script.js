@@ -48,7 +48,6 @@ $('#svc').innerHTML=SVC.map((s,i)=>`<div class="card tilt rv" style="--i:${i%4}"
   const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||nodes).appendChild(e);return e};
   [[945,353],[1168,241],[1094,631],[1503,688],[1725,780],[1614,483],[1875,557],[1763,278],[1437,291],[1298,447]].forEach(([x,y],i)=>{
     mk('circle',{cx:x,cy:y,r:17,class:'ring'});
-    const a=mk('path',{d:`M${x-17} ${y}A17 17 0 0 1 ${x} ${y-17}`,fill:'none',stroke:'#12f0e0','stroke-width':1.6,opacity:.8,class:'spin'});a.style.animationDuration=(4+i%4)+'s';
   });
   const C={g:'#22e08a',t:'#12c9bd',b:'#4f7cf0'};
   [[918,284,5,'g'],[1534,228,5,'b'],[1722,487,6,'t'],[1597,678,6,'t'],[1505,426,6,'g'],[1078,597,6,'b']].forEach(([x,y,r,c],i)=>{
