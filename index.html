@@ -148,6 +148,49 @@
   <div class="copy"><span>© 2026 1Factor (formerly iFactor). All rights reserved.</span><span>1Factor is a digital marketplace for supply chain and trade finance. Credit facilities are provided by partner banks and financial institutions at their sole discretion.</span></div>
 </div></footer>
 
+<div class="modal" id="apply" role="dialog" aria-modal="true" aria-labelledby="apt" hidden>
+  <div class="mbg" data-close></div>
+  <form class="mpanel" id="aform" novalidate>
+    <button type="button" class="mx" data-close aria-label="Close">&times;</button>
+    <div class="eyebrow">Apply for Finance Limit</div>
+    <h2 id="apt">Tell us about your trade</h2>
+    <div class="mprog" id="mprog"><i></i><i></i><i></i></div>
+    <div class="stp" data-step="0">
+      <div class="fr2">
+        <label>Company name<input name="company" required maxlength="120" autocomplete="organization"></label>
+        <label>Your name<input name="name" required maxlength="80" autocomplete="name"></label>
+        <label>Work email<input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+        <label>Phone<input name="phone" type="tel" required pattern="[0-9+()\-\s]{7,20}" maxlength="20" autocomplete="tel" placeholder="+91 98765 43210"></label>
+      </div>
+    </div>
+    <div class="stp" data-step="1" hidden>
+      <div class="fr2">
+        <label class="wide">Finance product<select name="product" id="aprod" required><option value="">Select a product</option></select></label>
+        <label>Limit needed<input name="amount" type="number" min="1" step="any" required placeholder="e.g. 5000000"></label>
+        <label>Currency<select name="currency"><option>INR</option><option>USD</option><option>EUR</option><option>AED</option><option>GBP</option></select></label>
+        <label class="wide">Annual turnover<select name="turnover" required><option value="">Select a range</option><option>Under 5 Cr</option><option>5 – 25 Cr</option><option>25 – 100 Cr</option><option>100 – 500 Cr</option><option>Above 500 Cr</option></select></label>
+        <label class="wide"><span>Anything else we should know? <small>(optional)</small></span><textarea name="message" rows="3" maxlength="600"></textarea></label>
+      </div>
+    </div>
+    <div class="stp" data-step="2" hidden>
+      <dl class="rev" id="arev"></dl>
+      <label class="chk"><input type="checkbox" name="consent" required> I agree that 1Factor and its partner lenders may contact me about this application.</label>
+    </div>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+    <p class="ferr" id="aerr" role="alert" hidden></p>
+    <div class="mact">
+      <button type="button" class="btn ghost" id="aback" hidden>Back</button>
+      <button type="button" class="btn" id="anext">Continue</button>
+      <button type="submit" class="btn" id="asub" hidden>Submit application</button>
+    </div>
+    <div class="done" id="adone" hidden>
+      <svg class="i"><use href="#check"/></svg>
+      <h3>Application received</h3>
+      <p id="adonep">Our team will reach out within one business day.</p>
+      <button type="button" class="btn" data-close>Close</button>
+    </div>
+  </form>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

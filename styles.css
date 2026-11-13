@@ -204,3 +204,32 @@ html.js .rv.in{opacity:1;transform:none}
 @media(max-width:1000px){.links{display:none}.g4{grid-template-columns:1fr 1fr}.reach{grid-template-columns:1fr;gap:48px}.big{grid-template-columns:1fr 1fr}.float{display:none}#routes{opacity:.35;width:100%}.fg{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.steps .card:after{display:none}.copy{flex-direction:column;gap:12px}}
 @media(max-width:600px){.g4,.g2,.fg{grid-template-columns:1fr}.banner>div{padding:0 26px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html.js .rv{opacity:1;transform:none}}
+
+/* apply form */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;overflow:auto}
+.modal[hidden]{display:none}
+.mbg{position:fixed;inset:0;background:rgba(2,6,12,.78);backdrop-filter:blur(8px);animation:mf .3s both}
+.mpanel{position:relative;width:100%;max-width:640px;background:linear-gradient(180deg,#0c1422,#080f1b);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:0 40px 120px -20px #000;animation:mp .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes mf{from{opacity:0}}@keyframes mp{from{opacity:0;transform:perspective(1000px) translateY(30px) rotateX(10deg) scale(.97)}}
+.mpanel h2{font-size:28px;margin-bottom:22px}
+.mx{position:absolute;top:16px;right:18px;width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text);font-size:22px;line-height:1;cursor:pointer}
+.mx:hover{border-color:var(--teal);color:var(--teal)}
+.mprog{display:flex;gap:8px;margin-bottom:26px}.mprog i{flex:1;height:3px;border-radius:3px;background:#122033;transition:background .4s}.mprog i.on{background:var(--teal)}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.fr2 .wide{grid-column:1/-1}
+.mpanel label{display:flex;flex-direction:column;gap:7px;font-size:13px;color:#b0bccd}
+.mpanel label small{color:#5d6b80}
+.mpanel input:not([type=checkbox]),.mpanel select,.mpanel textarea{font:400 15px 'Plus Jakarta Sans',sans-serif;color:var(--text);background:#060d17;border:1px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.mpanel textarea{resize:vertical}
+.mpanel input:focus,.mpanel select:focus,.mpanel textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(18,240,224,.15)}
+.mpanel .bad{border-color:#f06a6a!important}
+.stp:not([hidden]){animation:sl .45s cubic-bezier(.2,.8,.2,1) both}@keyframes sl{from{opacity:0;transform:translateX(24px)}}
+.rev{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;font-size:14px;margin-bottom:20px}.rev dt{color:#6b7a90}.rev dd{color:var(--text);overflow-wrap:anywhere}
+.chk{flex-direction:row!important;align-items:flex-start;gap:10px!important;line-height:1.5}.chk input{margin-top:3px;accent-color:var(--teal)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.ferr{margin-top:16px;color:#f58a8a;font-size:14px}
+.mact{display:flex;gap:12px;justify-content:flex-end;margin-top:26px}
+.done{text-align:center;padding:30px 0 6px}.done .i{font-size:54px;color:var(--green);margin-bottom:14px}.done h3{font-size:24px;margin-bottom:8px}.done p{color:var(--mute);margin-bottom:24px}
+body.mopen{overflow:hidden}
+@media(max-width:600px){.mpanel{padding:28px 20px;border-radius:20px}.fr2{grid-template-columns:1fr}.rev{grid-template-columns:1fr;gap:2px 0}.rev dt{margin-top:8px}.mact .btn{flex:1;justify-content:center}}
+
+[hidden]{display:none!important}

@@ -9,6 +9,7 @@ Responsive landing page for 1Factor, a global supply chain finance platform.
 - Expanding product slides (auto-advance, hover and click)
 - Animated "How it works" timeline
 - Scroll-reveal animations and mobile hamburger menu
+- Working 3-step "Apply for Finance Limit" form (opens from every Apply button)
 - Responsive from phone to desktop
 
 ## Tech
@@ -19,6 +20,7 @@ Plain HTML, CSS and JavaScript. No build step and no dependencies. Fonts load fr
 index.html      markup
 styles.css      all styles
 script.js       all behaviour (cards, slides, timeline, ticker, hero animation)
+api/apply.js    Vercel serverless function that receives the application form
 assets/         port.jpg, containers.jpg
 ```
 
@@ -37,3 +39,16 @@ No CI/CD pipeline is needed. Vercel deploys from GitHub automatically.
 1. On vercel.com choose **Add New → Project** and import this repo.
 2. Framework preset: **Other**. Leave the build command empty and the output directory as the project root.
 3. Every push to `main` deploys to production. Every other branch or pull request gets a preview URL.
+
+## Apply form
+Every "Apply" and "View & Apply" button opens a 3-step form (company, finance need, review). It posts to `/api/apply`, which validates the data and emails it to you through [Resend](https://resend.com).
+
+Set these in Vercel under **Project → Settings → Environment Variables**, then redeploy:
+
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Your Resend API key |
+| `APPLY_TO_EMAIL` | Inbox that receives applications, e.g. `info@1factor.com` |
+| `APPLY_FROM_EMAIL` | Optional sender on a domain verified in Resend (default `onboarding@resend.dev`, which only delivers to your own Resend account email) |
+
+If the variables are missing, or the page is opened as a plain file, the form falls back to opening the visitor's email app with the application filled in. Bots are filtered with a hidden honeypot field.

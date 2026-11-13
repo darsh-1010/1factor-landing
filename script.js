@@ -80,3 +80,37 @@ setTimeout(()=>$$('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.to
     c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');
     c.style.transform=`perspective(900px) rotateX(${(.5-y)*8}deg) rotateY(${(x-.5)*10}deg) translateY(-4px)`;c.style.transitionDelay='0s'});
   c.addEventListener('mouseleave',()=>c.style.transform='')});
+
+
+/* apply form: opens from every Apply / View & Apply button */
+(()=>{
+  const dlg=$('#apply'),form=$('#aform'),steps=$$('.stp',form),prog=$$('#mprog i'),
+    next=$('#anext'),back=$('#aback'),sub=$('#asub'),err=$('#aerr'),done=$('#adone');
+  let step=0,last=null;
+  $('#aprod').insertAdjacentHTML('beforeend',SVC.map(s=>`<option>${s[2]}</option>`).join(''));
+  const show=n=>{step=n;steps.forEach((s,i)=>s.hidden=i!==n);prog.forEach((p,i)=>p.classList.toggle('on',i<=n));
+    back.hidden=n===0;next.hidden=n===2;sub.hidden=n!==2;err.hidden=true;
+    if(n===2){const rows=[['Company',form.company.value],['Contact',form.name.value],['Email',form.email.value],['Phone',form.phone.value],['Product',form.product.value],['Limit',form.currency.value+' '+Number(form.amount.value).toLocaleString()],['Turnover',form.turnover.value],['Notes',form.message.value]].filter(r=>r[1].trim());
+      const dl=$('#arev');dl.textContent='';rows.forEach(([k,v])=>{const a=document.createElement('dt'),b=document.createElement('dd');a.textContent=k;b.textContent=v;dl.append(a,b)})}};
+  const valid=()=>{let ok=true,first;$$('input,select,textarea',steps[step]).forEach(f=>{const bad=!f.checkValidity();f.classList.toggle('bad',bad);if(bad&&!first)first=f;ok=ok&&!bad});if(first){first.focus();err.textContent='Please fill the highlighted fields.';err.hidden=false}else err.hidden=true;return ok};
+  const open=(prod)=>{last=document.activeElement;form.reset();done.hidden=true;[...form.children].forEach(c=>{if(c!==done)c.style.display=''});$$('.bad',form).forEach(f=>f.classList.remove('bad'));
+    if(prod&&[...form.product.options].some(o=>o.value===prod))form.product.value=prod;show(0);dlg.hidden=false;document.body.classList.add('mopen');setTimeout(()=>form.company.focus(),60)};
+  const close=()=>{dlg.hidden=true;document.body.classList.remove('mopen');last&&last.focus()};
+  $$('a[href="#contact"],.cta-card a[href^="mailto:"]').forEach(a=>{if(a.closest('.links'))return;a.addEventListener('click',e=>{e.preventDefault();
+    const card=a.closest('.card,.pn');const t=card&&$('h3',card);open(t?t.textContent.trim():'')})});
+  dlg.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))close()});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&!dlg.hidden)close()});
+  next.addEventListener('click',()=>valid()&&show(step+1));
+  back.addEventListener('click',()=>show(step-1));
+  form.addEventListener('submit',async e=>{e.preventDefault();if(!valid())return;
+    const data=Object.fromEntries(new FormData(form));if(data.website)return close(); // honeypot
+    sub.disabled=true;sub.textContent='Sending…';
+    let msg='Our team will reach out within one business day.';
+    try{const r=await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw 0}
+    catch{ // no backend reachable (e.g. opened from file://): fall back to the visitor's email app
+      const body=Object.entries(data).filter(([k,v])=>k!=='website'&&v).map(([k,v])=>k+': '+v).join('\n');
+      location.href='mailto:info@1factor.com?subject='+encodeURIComponent('Finance limit application — '+data.company)+'&body='+encodeURIComponent(body);
+      msg='Your email app should open with the application filled in. Press send to complete it.'}
+    sub.disabled=false;sub.textContent='Submit application';
+    [...form.children].forEach(c=>{if(c!==done)c.style.display='none'});done.hidden=false;$('#adonep').textContent=msg});
+})();
