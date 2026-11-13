@@ -154,3 +154,11 @@ setTimeout(()=>$$('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.to
   // section eyebrows slide in from the left with a small stagger
   gsap.utils.toArray('section:not(#hero) .eyebrow').forEach(el=>gsap.from(el,{x:-24,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true}}));
 })();
+
+
+/* "Ask AI" links: plain deep links with the prompt in the URL (no API involved) */
+(()=>{
+  const site=/^https?:/.test(location.origin)?' Its website is '+location.origin+'.':'';
+  const prompt='Summarize what 1Factor is and what it offers.'+site+' Cover its supply chain finance products (export, import, PO finance, invoice discounting, TReDS, working capital), how the application process works, and who it is for.';
+  document.querySelectorAll('#askai a').forEach(a=>a.href=a.dataset.u+encodeURIComponent(prompt));
+})();

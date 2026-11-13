@@ -237,3 +237,10 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
 #sbar{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;background:linear-gradient(90deg,var(--teal),var(--green));transform:scaleX(0);transform-origin:left;box-shadow:0 0 10px rgba(18,240,224,.6)}
+
+/* ask AI links */
+.askai{margin-top:30px}.askai h4{margin-bottom:14px!important}
+.askrow{display:flex;flex-wrap:wrap;gap:10px}
+.askrow a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:#b8c3d4;background:rgba(255,255,255,.02);transition:.25s;cursor:pointer}
+.askrow a .i{color:var(--teal);font-size:14px}
+.askrow a:hover{border-color:var(--teal);color:var(--text);transform:translateY(-2px);box-shadow:0 8px 24px -10px rgba(18,240,224,.5)}
