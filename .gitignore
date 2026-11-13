@@ -1,0 +1,4 @@
+*.mov
+.claude/
+.DS_Store
+._*
