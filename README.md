@@ -9,11 +9,12 @@ Responsive landing page for 1Factor, a global supply chain finance platform.
 - Expanding product slides (auto-advance, hover and click)
 - Animated "How it works" timeline
 - Scroll-reveal animations and mobile hamburger menu
+- Smooth scrolling (Lenis) with GSAP scroll effects: progress bar, hero and image parallax, stat count-up
 - Working 3-step "Apply for Finance Limit" form (opens from every Apply button)
 - Responsive from phone to desktop
 
 ## Tech
-Plain HTML, CSS and JavaScript. No build step and no dependencies. Fonts load from Google Fonts.
+Plain HTML, CSS and JavaScript. No build step. GSAP 3.12.5 and Lenis 1.1.18 load from a CDN (cdnjs and jsDelivr), and fonts from Google Fonts. If the CDN scripts fail or the visitor prefers reduced motion, the page falls back to normal scrolling.
 
 ## Structure
 ```

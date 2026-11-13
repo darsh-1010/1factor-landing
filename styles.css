@@ -233,3 +233,9 @@ body.mopen{overflow:hidden}
 @media(max-width:600px){.mpanel{padding:28px 20px;border-radius:20px}.fr2{grid-template-columns:1fr}.rev{grid-template-columns:1fr;gap:2px 0}.rev dt{margin-top:8px}.mact .btn{flex:1;justify-content:center}}
 
 [hidden]{display:none!important}
+
+/* smooth scroll + progress */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+#sbar{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;background:linear-gradient(90deg,var(--teal),var(--green));transform:scaleX(0);transform-origin:left;box-shadow:0 0 10px rgba(18,240,224,.6)}

@@ -114,3 +114,44 @@ setTimeout(()=>$$('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.to
     sub.disabled=false;sub.textContent='Submit application';
     [...form.children].forEach(c=>{if(c!==done)c.style.display='none'});done.hidden=false;$('#adonep').textContent=msg});
 })();
+
+
+/* smooth scroll (Lenis) + scroll-driven motion (GSAP). Page works fine without them. */
+(()=>{
+  if(!window.gsap||!window.Lenis||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  gsap.registerPlugin(ScrollTrigger);
+  const lenis=new Lenis({duration:1.15,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+  window.lenis=lenis;
+
+  // anchor links glide instead of jumping (apply-form buttons already prevent default)
+  document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||a.getAttribute('href')==='#')return;
+    const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t,{offset:-56})}});
+  // pause scrolling while the apply form is open
+  new MutationObserver(()=>document.body.classList.contains('mopen')?lenis.stop():lenis.start()).observe(document.body,{attributes:true,attributeFilter:['class']});
+
+  // top progress bar
+  const bar=document.createElement('div');bar.id='sbar';document.body.append(bar);
+  gsap.to(bar,{scaleX:1,ease:'none',scrollTrigger:{scrub:.3,start:0,end:'max'}});
+
+  // hero parallax: copy drifts up and fades, routes and ticker-side cards lag behind
+  gsap.to('.hero-l',{yPercent:-12,opacity:.25,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#routes',{y:140,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // image parallax
+  gsap.fromTo('.photo img',{yPercent:-7,scale:1.14},{yPercent:7,ease:'none',scrollTrigger:{trigger:'.photo',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.fromTo('.banner',{backgroundPositionY:'20%'},{backgroundPositionY:'80%',ease:'none',scrollTrigger:{trigger:'.banner',start:'top bottom',end:'bottom top',scrub:true}});
+
+  // number count-up for the big stats ($4.2B+, 12,000+, 3.5 hrs, 100+)
+  document.querySelectorAll('.big b').forEach(el=>{
+    const m=el.textContent.match(/^([^0-9]*)([0-9][0-9,]*\.?[0-9]*)(.*)$/);if(!m)return;
+    const end=parseFloat(m[2].replace(/,/g,'')),dec=(m[2].split('.')[1]||'').length,comma=m[2].includes(','),o={v:0};
+    const fmt=v=>m[1]+(comma?Math.round(v).toLocaleString('en-US'):v.toFixed(dec))+m[3];
+    el.textContent=fmt(0);
+    gsap.to(o,{v:end,duration:1.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 90%',once:true},onUpdate:()=>el.textContent=fmt(o.v),onComplete:()=>el.textContent=m[1]+m[2]+m[3]});
+  });
+
+  // section eyebrows slide in from the left with a small stagger
+  gsap.utils.toArray('section:not(#hero) .eyebrow').forEach(el=>gsap.from(el,{x:-24,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true}}));
+})();
