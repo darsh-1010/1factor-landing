@@ -244,3 +244,9 @@ html.lenis,html.lenis body{height:auto}
 .askrow a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:#b8c3d4;background:rgba(255,255,255,.02);transition:.25s;cursor:pointer}
 .askrow a .i{color:var(--teal);font-size:14px}
 .askrow a:hover{border-color:var(--teal);color:var(--text);transform:translateY(-2px);box-shadow:0 8px 24px -10px rgba(18,240,224,.5)}
+
+/* numbered why-cards + highlighted China Desk */
+.card small.k.n{color:var(--teal);font-size:13px;margin-bottom:22px}
+.card.hl{border-color:rgba(18,240,224,.4)}
+.card.hl .more{display:inline-flex;margin-top:16px}
+#china{scroll-margin-top:90px}

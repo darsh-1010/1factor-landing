@@ -3,14 +3,14 @@ const ic=n=>`<svg class="i"><use href="#${n}"/></svg>`;
 
 /* services — exact copy from the original */
 const SVC=[
-['globe','Cross-border liquidity','Export Finance','Pre and post-shipment credit lines for international trade fulfilment, connected to a global network of 100+ factoring agencies and lending institutions with non-recourse risk mitigation.',['Up to 90% of invoice value','48hr approvals','140+ countries']],
-['ship','Procurement capital','Import Finance','Direct vendor payments against shipping documents and Letters of Credit with flexible repayment cycles and multi-currency settlement.',['Zero collateral options','Multi-currency settlement','LC-backed']],
-['file','Purchase order capital','PO Finance','Fulfil large enterprise orders without depleting cash reserves. Funding against confirmed purchase orders for raw material, manufacturing and packaging costs.',['Up to 100% order coverage','Direct supplier escrow','PO-backed']],
-['zap','Invoice capital acceleration','PID / SID Discounting','Purchase Invoice Discounting and Sales Invoice Discounting with instant digital verification and multi-lender competitive bidding.',['T+0/T+1 disbursal','Competitive rates','Digital verification']],
-['trend','Revolving credit line','Unsecured Working Capital Finance','Flexible liquidity reserves for scaling inventory, operational overheads and market expansion — without pledging fixed assets.',['No collateral','Revolving drawdown','Fast sanctions']],
-['building','Institutional exchange bidding','TReDS Finance Limit','Unified gateway to competitive multi-financier bidding across TReDS exchanges (TReDS/RXIL/Invoicemart/DTXL) for MSME receivables — collateral-free.',['MSME &amp; seller-centric','Multi-bank bidding','No collateral']],
-['truck','Inter-state trade lines','Domestic Finance','End-to-end supply chain credit facilities covering tier-1 suppliers, distributors and corporate buyers across the country.',['Tier-1 to Tier-3 coverage','Automated collections','PAN-India']],
-['layers','360° trade infrastructure','Full Supply Chain Services','The complete trade infrastructure suite: LC discounting, bill discounting, buyer-seller reverse factoring, trade credit &amp; marine insurance, currency hedging, voyage funding and digital logistics tracking.',['End-to-end OS','Insurance &amp; FX','Logistics support']]];
+['globe','International Trade Finance &amp; Forfaiting','Export Finance','Pre and post-shipment international trade finance with non-recourse forfaiting of export receivables — connected to a global network of 40+ factoring agencies and lending institutions.',['Up to 90% of invoice value','Non-recourse','25+ countries']],
+['ship','Reverse Factoring &amp; PID Discounting','Import Finance','Reverse factoring and Purchase Invoice Discounting for importers — pay suppliers on time against shipping documents, with flexible repayment cycles and multi-currency settlement.',['Zero collateral options','Multi-currency settlement','LC-backed']],
+['file','PO Funding &amp; Domestic Purchase Bill Discounting','Vendor Finance','Fulfil large orders without depleting cash reserves — funding against confirmed purchase orders and domestic purchase bills, with direct-to-supplier escrow payments.',['Up to 100% order coverage','Direct supplier escrow','PO-backed']],
+['trend','Revolving Credit Line','Unsecured Working Capital Finance','Flexible liquidity reserves for scaling inventory, operational overheads and market expansion — without pledging fixed assets.',['No collateral','Revolving drawdown','Fast sanctions']],
+['building','Institutional Exchange Bidding','TReDS Finance Limit','Unified gateway to competitive multi-financier bidding across TReDS exchanges (TReDS/RXIL/Invoicemart/DTXL) for MSME receivables — collateral-free.',['MSME &amp; seller-centric','Multi-bank bidding','No collateral']],
+['zap','Cash-flow Underwritten Capital','Revenue Backed Finance','Limits underwritten against your business revenues and cash flows — GST sales turnover, banking turnover and receivables — instead of fixed-asset collateral.',['GST &amp; bank turnover','No fixed-asset collateral','Digital underwriting']],
+['truck','Warehouse Financing &amp; Repo','Inventory Finance','Unlock the capital locked in your stock — warehouse financing, Sales / Repurchase (Repo) &amp; Enhanced Repo finance, and revolving lines of credit against inventory.',['Warehouse financing','Repo &amp; Enhanced Repo','Revolving lines']],
+['layers','360° Trade Infrastructure','SCF Orbit','The complete supply chain finance infrastructure under one roof — LC discounting, reverse factoring, trade credit insurance, FX hedging and funding — with a dedicated China Desk for your sourcing corridor.',['End-to-end OS','Insurance &amp; FX','China Desk']]];
 $('#svc').innerHTML=SVC.map((s,i)=>`<div class="card tilt rv" style="--i:${i%4}"><div class="ico">${ic(s[0])}</div><small class="k">${s[1]}</small><h3>${s[2]}</h3><p>${s[3]}</p><div class="chips">${s[4].map(c=>`<span>${c}</span>`).join('')}</div><a href="#contact" class="more">View &amp; Apply ${ic('arrow')}</a></div>`).join('');
 
 /* mobile menu */
@@ -142,7 +142,7 @@ setTimeout(()=>$$('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.to
   gsap.fromTo('.photo img',{yPercent:-7,scale:1.14},{yPercent:7,ease:'none',scrollTrigger:{trigger:'.photo',start:'top bottom',end:'bottom top',scrub:true}});
   gsap.fromTo('.banner',{backgroundPositionY:'20%'},{backgroundPositionY:'80%',ease:'none',scrollTrigger:{trigger:'.banner',start:'top bottom',end:'bottom top',scrub:true}});
 
-  // number count-up for the big stats ($4.2B+, 12,000+, 3.5 hrs, 100+)
+  // number count-up for the big stats ($4.2B+, 40+, 25+, 200+, 900+)
   document.querySelectorAll('.big b').forEach(el=>{
     const m=el.textContent.match(/^([^0-9]*)([0-9][0-9,]*\.?[0-9]*)(.*)$/);if(!m)return;
     const end=parseFloat(m[2].replace(/,/g,'')),dec=(m[2].split('.')[1]||'').length,comma=m[2].includes(','),o={v:0};
