@@ -250,3 +250,5 @@ html.lenis,html.lenis body{height:auto}
 .card.hl{border-color:rgba(18,240,224,.4)}
 .card.hl .more{display:inline-flex;margin-top:16px}
 #china{scroll-margin-top:90px}
+
+.logo img{height:30px;width:auto;display:block}footer .logo img{height:34px}
