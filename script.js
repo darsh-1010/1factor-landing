@@ -108,7 +108,7 @@ setTimeout(()=>$$('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.to
     try{const r=await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw 0}
     catch{ // no backend reachable (e.g. opened from file://): fall back to the visitor's email app
       const body=Object.entries(data).filter(([k,v])=>k!=='website'&&v).map(([k,v])=>k+': '+v).join('\n');
-      location.href='mailto:info@1factor.com?subject='+encodeURIComponent('Finance limit application — '+data.company)+'&body='+encodeURIComponent(body);
+      location.href='mailto:scf@1factor.in?subject='+encodeURIComponent('Finance limit application — '+data.company)+'&body='+encodeURIComponent(body);
       msg='Your email app should open with the application filled in. Press send to complete it.'}
     sub.disabled=false;sub.textContent='Submit application';
     [...form.children].forEach(c=>{if(c!==done)c.style.display='none'});done.hidden=false;$('#adonep').textContent=msg});

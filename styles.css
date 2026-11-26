@@ -157,7 +157,7 @@ h1 em{font-style:normal;background:linear-gradient(90deg,#12f0e0 0%,#22e08a 30%,
 
 /* footer */
 footer{border-top:1px solid #0e1726;padding:80px 0 0}
-.fg{display:grid;grid-template-columns:1.1fr 1.3fr .7fr 1.5fr;gap:40px}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.3fr;gap:40px}
 .fg h4{font:500 12px var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:24px}
 .fg ul{list-style:none;display:grid;gap:14px;font-size:15px;color:#9aa6b8}
 .fg li a:hover{color:var(--teal)}
@@ -252,3 +252,15 @@ html.lenis,html.lenis body{height:auto}
 #china{scroll-margin-top:90px}
 
 .logo img{height:30px;width:auto;display:block}footer .logo img{height:34px}
+
+/* china desk + footer additions */
+.cn{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.ticks{list-style:none;display:grid;gap:16px;margin:30px 0 36px;font-size:16px;color:#c3cddc}
+.ticks li{display:flex;gap:14px;align-items:center}.ticks .i{color:var(--teal);font-size:20px;flex:none}
+.cn-p img{aspect-ratio:1.15;object-position:center}
+.cn-p .mini{gap:14px;margin:-60px 20px 20px;padding:14px 20px}.cn-p .mini .i{margin:0;font-size:26px;color:var(--teal)}
+.fg .pw{margin:-6px 0 22px;font-size:14px}.fg .pw b{color:var(--teal);font-weight:600}
+.copy .tg{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;text-align:right}
+.big{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1000px){.cn{grid-template-columns:1fr;gap:48px}.big{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:600px){.big{grid-template-columns:1fr}.copy .tg{text-align:left}}
