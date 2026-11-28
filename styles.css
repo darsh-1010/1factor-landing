@@ -165,6 +165,7 @@ footer{border-top:1px solid #0e1726;padding:80px 0 0}
 .soc{display:flex;gap:12px}
 .soc a{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;color:#aab6c8;font-size:17px;transition:.2s}
 .soc a:hover{color:var(--teal);border-color:var(--teal)}
+.nami-logo{display:block;height:36px;width:auto;margin:24px 0 0}
 .ct span{overflow-wrap:anywhere}.ct{display:grid;gap:18px;font-size:15px;color:#9aa6b8;list-style:none}
 .ct li{display:flex;gap:14px}.ct .i{color:var(--teal);margin-top:4px;font-size:16px}
 .copy{display:flex;justify-content:space-between;gap:40px;margin-top:70px;padding:26px 0 34px;border-top:1px solid #0e1726;font-size:13px;color:#5d6b80}
